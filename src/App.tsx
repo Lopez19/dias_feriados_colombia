@@ -1,5 +1,7 @@
 import fc, { Festivo } from "festivos-colombia";
 import { useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 
 function App() {
   const [festivos, setFestivos] = useState<Festivo[]>([]);
@@ -42,6 +44,16 @@ function App() {
           </li>
         ))}
       </ul>
+
+      <FullCalendar
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        weekends={false}
+        events={festivos.map((festivo) => ({
+          title: festivo.name,
+          date: festivo.date,
+        }))}
+      />
     </>
   );
 }
