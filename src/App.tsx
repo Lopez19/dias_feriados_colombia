@@ -36,26 +36,30 @@ function App() {
 
   return (
     <>
-      <button onClick={getFestivos}>
-        Get Festivos Anio {new Date().getFullYear()}
-      </button>
-      <ul>
-        {festivos.map((festivo, index) => (
-          <li key={index}>
-            {festivo.nameDay} - {festivo.date} - {festivo.name}
-          </li>
-        ))}
-      </ul>
+      <div className="mx-12 py-12">
+        <button
+          onClick={getFestivos}
+          className="bg-blue-600 text-white px-4 py-2 rounded-md mb-3"
+        >
+          Get Festivos Anio {new Date().getFullYear()}
+        </button>
+        <ul>
+          {festivos.map((festivo, index) => (
+            <li key={index}>
+              {festivo.nameDay} - {festivo.date} - {festivo.name}
+            </li>
+          ))}
+        </ul>
 
-      <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
-        weekends={false}
-        events={festivos.map((festivo) => ({
-          title: festivo.name,
-          date: festivo.date,
-        }))}
-      />
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          events={festivos.map((festivo) => ({
+            title: festivo.name,
+            date: festivo.date,
+          }))}
+        />
+      </div>
     </>
   );
 }
